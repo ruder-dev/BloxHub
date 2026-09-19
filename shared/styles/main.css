@@ -1,0 +1,128 @@
+body {
+    background-color: #191919;
+}
+
+
+.container {
+    background-color: #232527;  
+}
+
+
+.title {
+    color: #FFFFFF;
+}
+
+.sub-title {
+    color: #AAAEB3;
+}
+
+.hidden {
+    display: none;
+    opacity: 0%;
+    visibility: hidden;
+}
+
+.input-box {
+    background-color: #818487;
+    border: 2px solid #9fa5a9;
+    outline: none;
+    color: #f3f4f6;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+input::placeholder {
+    color: #cdcdce;
+}
+
+button {
+    color: #FFFFFF;
+    font-family: Arial, sans-serif;
+    font-size:medium;
+    font-weight: bold;
+    border: none;
+    outline: black;
+    border-radius: 2px;
+}
+
+.details {
+    margin-left: 40px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+
+
+.footer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-left: 10px ;
+}
+
+
+img {
+    border-radius: 3px;
+}
+
+p,span,h4,h3 ,li , h5 {
+    color: #E1E2E3; 
+}
+
+p,span,h4,h3,h2,h1, li,h5 {
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+}
+
+
+
+.edit-button{
+    background-color: #00A2FF;
+}
+
+.remove-button{
+    background-color: #F54545;
+}
+
+.enter-button {
+    background-color: #45f54ee1;
+}
+
+.question-box {
+    width: 400px;
+    padding-left: 20px;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.warning-text {
+    color: #F54545;
+}
+.column-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.row-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.margin-left-container {
+    margin-left: 20px;
+}
+
+.large-row-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 50px;
+}

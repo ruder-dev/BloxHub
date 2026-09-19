@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../shared/styles/animations.css">
+    <link rel="stylesheet" href="../../shared/styles/main.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <script type="module" src="../../shared/js/main.js" defer></script>
+    <script type="module" src="../../shared/js/clientStorage.js" defer></script>
+    <script type="module" src="dashboard.js" defer></script>
+
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1 class="title title-animation-delay animation-on-load">Your Personal Dashboard</h1>
+    <main class="sections">
+        <div class="row-container">
+            <section class="upper-body container container-animation-delay animation-on-load">
+
+                <div class="client-header">
+                    <h2 class="sub-title "> Name: 
+                        <span id="detailed-username">SomeRandomName
+                        </span>
+                        <input type="text" id="edit-username-input" class="hidden">
+                    </h2>
+                <button type="button" class="edit-client-button edit-button" id="edit-client-button">edit name</button>
+                </div>
+
+                <div class="details">
+                    <img src="https://dummyimage.com/50x50/333/fff" class="profile" alt="image of user">
+                    <h4 class="smaller-title" id="detailed-robux-amount">amount of robux</h4>
+
+                </div>
+
+
+
+                <div class="footer">
+                    <button type="button" class="remove-client-button remove-button" id="remove-client-button">Remove user?</button>
+                    <p>Status: Doing</p>
+                    <img src="https://dummyimage.com/25x25/333/fff" alt="a green circle">
+                </div>
+
+
+            </section>
+
+            <div class="container question-box hidden" id="question-box">
+                <div class="row-container">
+                    <h4>Enter the details down below!</h4>
+                    <button class="enter-button" id="submit-button">Submit details!</button>
+                    <p class="animation-on-load paragraph-animation-delay hidden warning-text"></p>
+                </div>
+            </div>
+        </div>
+
+
+        <section class="lower-body container container-animation-delay animation-on-load">
+            <div class="lower-body-header">
+                <h3 class="sub-title">Your clients</h3>
+                <button type="button" class="add-client-button enter-button" id="add-client-button">
+                Add new client
+                </button>
+            </div>
+            
+            <div class="scrollable-container" id="scrollable-container">
+                <ul class="client-list" id="client-list">
+                </ul>
+            </div>
+        </section>
+
+    </main>
+    <footer>
+    </footer>
+    
+    
+</body>
+</html>

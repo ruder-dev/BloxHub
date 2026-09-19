@@ -1,0 +1,27 @@
+
+
+.blue-highlight {
+    background: linear-gradient(180deg,rgb(91, 211, 255),rgb(0, 153, 255));
+
+    -webkit-background-clip: text;
+    background-clip: text;
+
+    color: transparent;
+}
+
+.discord-login-button{
+    background: rgb(24, 128, 255);
+}
+
+.guest-login-button{
+    background-color: rgb(54, 53, 53);
+}
+
+
+
+.button-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+}
