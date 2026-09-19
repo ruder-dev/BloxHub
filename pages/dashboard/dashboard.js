@@ -121,6 +121,7 @@ function createQuestionDiv(text_content,placeholder,element_id) {
 }
 function showMultiQuestionBox() {
     question_box.classList.remove('hidden');
+    document.querySelectorAll(".remove-me").forEach(element => element.remove());
 }
 
 function hideQuestionBox() {
@@ -161,32 +162,18 @@ submit_button.addEventListener('click', function() {
 
         const old_key = current_displayed_client;
 
-        // 1. Fetch old data & save under new key
-        let existingInfo = getClientInfo(old_key);
-        if (existingInfo) {
-            existingInfo.client_name = new_name;
-            saveClient(new_name, existingInfo); // Save under new key
-            if (old_key !== new_name) {
-                removeClient(old_key); // Clean up old key entry
-            }
-        } else {
-            changeClientProperty(old_key, "client_name", new_name);
-        }
-        
-        // 2. Update the sidebar card DOM element directly
-        const cards = client_list_element.querySelectorAll(".client-card");
-        cards.forEach(card => {
-            const h4 = card.querySelector("h4");
-            if (h4 && h4.textContent.trim() === old_key) {
-                h4.textContent = new_name;
-                const img = card.querySelector("img");
-                if (img) img.alt = `image of ${new_name}`;
-            }
-        });
+        changeClientProperty(old_key, "client_name", new_name);
 
-        // 3. Update state tracking & detail panel
         current_displayed_client = new_name;
-        showDetailedDashboard(new_name);
+        
+        client_cards.forEach(function(card) {
+            let username_header = card.querySelector("h4");
+            //console.log(`header? ${username_header !== undefined}, username ${username_header.textContent}`)
+            if(username_header && username_header.textContent.trim() === old_key) {
+                username_header.textContent = new_name;
+            }
+        })
+        showDetailedDashboard(new_name)
 
         // 4. Reset warning and close modal
         if (question_box.querySelector("#warning-text")) {

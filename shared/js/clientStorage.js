@@ -61,22 +61,28 @@ export function removeClient(client_key) {
 }
 
 export function changeClientProperty(client_id, property, value) {
-    // Check undefined/null explicitly so boolean false or numeric 0 are accepted
+    
     if (client_id === undefined || property === undefined || value === undefined) {
         console.warn("Missing parameter for changeClientProperty!");
         return;
     }
 
     let client_list = getClientList();
-
-    if (!client_list[client_id]) {
+    let client_info =  client_list[client_id];
+    
+    if (!client_info) {
         console.warn(`Couldn't find client '${client_id}'!`);
         return;
     }
 
-    // FIX: Update property directly without checking if old value was truthy
-    client_list[client_id][property] = value;
+    if(property === "client_name") {
+        client_list[value] = client_info;
+        delete client_list[client_id];
+    }
 
-    // FIX: Save updated list back to localStorage
+    
+    client_info[property] = value;
+
+    
     localStorage.setItem("Clients", JSON.stringify(client_list));
 }
