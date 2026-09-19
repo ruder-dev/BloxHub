@@ -94,4 +94,3 @@ discord_login_button.addEventListener('click',function() {
     
     ChangeUserWindow(event)
 })
-

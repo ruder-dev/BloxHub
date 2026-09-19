@@ -145,35 +145,79 @@ add_client_button.addEventListener('click',function() {
 
 })  
 
-submit_button.addEventListener('click',function(){
+submit_button.addEventListener('click', function() {
     const getValue = id => (document.getElementById(id)?.value.trim()) || null;
 
+    const nameInput = document.getElementById("question-name");
+    const isEditMode = nameInput && !document.getElementById("question-amount"); 
+
+    if (isEditMode) {
+        let new_name = getValue("question-name");
+        
+        if (!new_name) {
+            createWarningText(question_box, "Please enter a valid name!");
+            return;
+        }
+
+        const old_key = current_displayed_client;
+
+        // 1. Fetch old data & save under new key
+        let existingInfo = getClientInfo(old_key);
+        if (existingInfo) {
+            existingInfo.client_name = new_name;
+            saveClient(new_name, existingInfo); // Save under new key
+            if (old_key !== new_name) {
+                removeClient(old_key); // Clean up old key entry
+            }
+        } else {
+            changeClientProperty(old_key, "client_name", new_name);
+        }
+        
+        // 2. Update the sidebar card DOM element directly
+        const cards = client_list_element.querySelectorAll(".client-card");
+        cards.forEach(card => {
+            const h4 = card.querySelector("h4");
+            if (h4 && h4.textContent.trim() === old_key) {
+                h4.textContent = new_name;
+                const img = card.querySelector("img");
+                if (img) img.alt = `image of ${new_name}`;
+            }
+        });
+
+        // 3. Update state tracking & detail panel
+        current_displayed_client = new_name;
+        showDetailedDashboard(new_name);
+
+        // 4. Reset warning and close modal
+        if (question_box.querySelector("#warning-text")) {
+            hideWarningText(question_box);
+        }
+        hideQuestionBox();
+        return;
+    }
+
+    // --- Standard Add Client Logic ---
     let client_info = {
         client_name: getValue("question-name"),
         robux_amount: getValue("question-amount"),
         job_type: getValue("question-type"),
         priority: getValue("question-priority"),
-    }
+    };
 
-    let client_name = client_info["client_name"];
-    let is_single_edit = (Object.values(client_info).length === 1 && !client_name && !current_displayed_client)
-    if(is_single_edit) {
-        changeClientProperty(current_displayed_client,"client_name",client_name);
-        return;
-    }
     if (isDictionaryEmpty(client_info)) {
         console.warn("Some fields are empty!");
-        createWarningText(question_box,"Make sure that you entered all of the details!");
+        createWarningText(question_box, "Make sure that you entered all of the details!");
         return;
     }
 
-    if(question_box.querySelector("#warning-text")) {
+    if (question_box.querySelector("#warning-text")) {
         hideWarningText(question_box);
     }
+    
     hideQuestionBox();
-    saveClient(client_name,client_info);
+    saveClient(client_info.client_name, client_info);
     addNewClient(client_info);
-})
+});
 edit_client_button.addEventListener('click',function() {
 
     if(current_displayed_client == null) {

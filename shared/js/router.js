@@ -64,3 +64,4 @@ function RedirectUser() {
 //Event Listeners
 //Called Functions
 
+RedirectUser();
