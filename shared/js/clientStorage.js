@@ -56,7 +56,6 @@ export function removeClient(client_key) {
     }
 
     delete client_list[client_key];
-    // FIX: Persist deletion to localStorage
     localStorage.setItem("Clients", JSON.stringify(client_list));
 }
 

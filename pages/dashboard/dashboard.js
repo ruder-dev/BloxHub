@@ -200,7 +200,7 @@ submit_button.addEventListener('click', function() {
 });
 edit_client_button.addEventListener('click',function() {
 
-    if(current_displayed_client == null) {
+    if(!current_displayed_client) {
         console.warn("There is no client displayed to edit!");
         return;
     }
