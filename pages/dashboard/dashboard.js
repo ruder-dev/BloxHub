@@ -165,14 +165,7 @@ submit_button.addEventListener('click', function() {
         changeClientProperty(old_key, "client_name", new_name);
 
         current_displayed_client = new_name;
-        
-        client_cards.forEach(function(card) {
-            let username_header = card.querySelector("h4");
-            //console.log(`header? ${username_header !== undefined}, username ${username_header.textContent}`)
-            if(username_header && username_header.textContent.trim() === old_key) {
-                username_header.textContent = new_name;
-            }
-        })
+        window.location.reload();
         showDetailedDashboard(new_name)
 
         // 4. Reset warning and close modal
@@ -219,6 +212,7 @@ edit_client_button.addEventListener('click',function() {
 
 remove_client_button.addEventListener('click',function() {
     removeClient(current_displayed_client);
+    window.location.reload();
 })
 
 client_list_element.addEventListener('click',(event) => {
